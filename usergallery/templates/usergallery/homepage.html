@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Landing Page</title>
+    <style>
+        /* Style for the image grid */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* Three equal columns */
+            gap: 20px; /* Space between grid items */
+            margin-top: 20px;
+        }
+
+        .image-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+
+        .image-item img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 8px;
+        }
+
+        .image-item p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 10px;
+        }
+        .backGround {
+            padding-top: 100px; /* Adjust this value to match your header's height */
+            background-image: url('{% static 'images/adventure_image_openai.webp'%}');
+            background-size: cover; /* Ensures the image covers the entire viewport */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
+            background-attachment: fixed; /* Keeps the image fixed while content scrolls */
+            background-position: center; /* Centers the image */
+        }
+
+        .header {
+                
+                padding: 20px;
+                text-align: center;
+                font-family: 'Brush Script MT', cursive;
+
+                position: fixed; /* Keeps the header fixed to the top */
+                top: 0; /* Ensures it's at the very top of the viewport */
+                left: 0; /* Aligns it with the left edge */
+                width: 100%; /* Makes the header span the full width of the page */
+                z-index: 1000; /* Ensures it stays above other elements */
+                background-color: white; /* Optional: add a background to distinguish it */
+                box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for better visibility */
+                }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Spiess Gallery</h1>
+    </div>
+    
+    <div class="backGround">
+        <h1>Image Gallery</h1>
+
+        <!-- Image upload form -->
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %} <!-- CSRF token for security -->
+            {{ form.as_p }} <!-- Render the form -->
+            <button type="submit">Upload</button>
+        </form>
+
+        <h2>Your Images</h2>
+
+        <!-- Grid layout for uploaded images -->
+        <div class="image-grid">
+            {% for image in images %}
+            <div class="image-item">
+                <img src="{{ image.image.url }}" alt="Uploaded Image">
+                <p>Uploaded on: {{ image.uploaded_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!--<h3>The test image here</h3>-->
+        <!--<img src="{% static 'images/me.jpg' %}" alt="My image">-->
+
+
+    </div>
+    
+</body>
+</html>

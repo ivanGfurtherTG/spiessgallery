@@ -1,0 +1,39 @@
+# Python-related files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Virtual environments
+env/
+venv/
+ENV/
+
+# Django-specific files
+db.sqlite3
+media/
+
+# Static files (optional, if you're using AWS S3 or another storage service)
+staticfiles/
+
+# Environment variables
+.env
+
+# Logs and debug files
+*.log
+
+# IDE files (optional)
+.idea/
+.vscode/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Byte-compiled or other generated files
+*.swp
+*.bak
+*.tmp
+
+# Deployment files
+*.pem
